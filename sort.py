@@ -17,14 +17,14 @@
 """
 from __future__ import print_function
 
-import os
 import uuid
 
 import numpy as np
 from filterpy.kalman import KalmanFilter
-
+from scipy.optimize import linear_sum_assignment
 
 def linear_assignment(cost_matrix):
+    """
     try:
         import lap
 
@@ -35,6 +35,9 @@ def linear_assignment(cost_matrix):
 
         x, y = linear_sum_assignment(cost_matrix)
         return np.array(list(zip(x, y)))
+    """
+    x, y = linear_sum_assignment(cost_matrix)
+    return np.array(list(zip(x, y)))
 
 
 def iou_batch(bb_test, bb_gt):
